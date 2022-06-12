@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-struct specvc {
+struct specvc {  //구조체 사용
 	char vcname[30]; //회사명
 	char vctype[30]; // 백신 종류
 	int age; //대상 나이
@@ -14,13 +14,13 @@ void rewrite(int x, int *y);
 
 int main() {
 	int namecode;
-	int cold[10] = {885897, 18225460, 10731244, 3922968, 17634065, 9026281, 28917717, 22459362, 84706275, 26803867};
+	int cold[10] = {885897, 18225460, 10731244, 3922968, 17634065, 9026281, 28917717, 22459362, 84706275, 26803867}; //배열
 	double death[10] = {0.6, 0.1, 0.4, 1.1, 0.9, 0.3, 0.5, 0.8, 1.2, 0.5};
 	double worldvc1[10] = {89.4, 87.8, 86.6, 86, 84.1, 82.2, 80.7, 78.4, 78, 76.9}; //백신현황 1회이상
 	double worldvc2[10] = {87, 86.9, 81, 82.5, 79.4, 81, 78.4, 73.3, 66.8, 76.9}; //백신현황 접종완료 
 	char wd; //수정
 	int wvc; //백신 종류
-	int * loc = NULL;
+	int (*loc) = NULL; //포인터 loc로 cold주소 받기 (포인터 활용)
 
 	struct specvc a = { "화이자", "mRNA", 12, 21 };
 	struct specvc b = { "모더나", "mRNA", 18, 28 };
@@ -80,12 +80,16 @@ int main() {
 				switch (wvc) {
 				case 1:
 					printf("%s사의 백신은 %s이며, %d이상에게 접종할 수 있고, %d일이상 간격으로 사용해야합니다.\n", a.vcname, a.vctype, a.age, a.time);
+					break;
 				case 2:
 					printf("%s사의 백신은 %s이며, %d이상에게 접종할 수 있고, %d일이상 간격으로 사용해야합니다.\n", b.vcname, b.vctype, b.age, b.time);
+					break;
 				case 3:
 					printf("%s사의 백신은 %s이며, %d이상에게 접종할 수 있고, 재접종이 강제되지 않습니다.\n", c.vcname, c.vctype, c.age, c.time);
+					break;
 				case 4:
 					printf("%s사의 백신은 %s이며, %d이상에게 접종할 수 있고, %d일이상 간격으로 사용해야합니다.\n", d.vcname, d.vctype, d.age, d.time);
+					break;
 				}
 			}
 
@@ -101,7 +105,7 @@ int main() {
 	return 0;
 }
 
-void rewrite(int x, int *y)
+void rewrite(int x, int *y) // 함수사용
 {
 	int fixnum;
 	printf("수정할 값을 입력하세요.");
@@ -111,7 +115,7 @@ void rewrite(int x, int *y)
 
 	switch (x) {
 	case 0:
-		*y = fixnum;
+		*y = fixnum; //포인터
 	case 1:
 		*y = fixnum;
 	case 2:
