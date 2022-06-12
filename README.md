@@ -1,5 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+/* Covid-19 관련 처리를 하는 프로그램을 구현
+202201814 송경환
+*/
 
 struct specvc {  //구조체 사용
 	char vcname[30]; //회사명
@@ -21,6 +24,7 @@ int main() {
 	char wd; //수정
 	int wvc; //백신 종류
 	int (*loc) = NULL; //포인터 loc로 cold주소 받기 (포인터 활용)
+	char trash111;
 
 	struct specvc a = { "화이자", "mRNA", 12, 21 };
 	struct specvc b = { "모더나", "mRNA", 18, 28 };
@@ -33,9 +37,9 @@ int main() {
 		printf("수정을 원하시면 y, 아니면 n을 입력해주십시오.\n");
 		scanf("%c", &wd);
 		if (wd == 'y') {
-			loc = &cold;
 			printf("어느나라의 확진자 수를 수정하겠습니까?\n국가코드는 다음과 같습니다.\n 0중국 1한국 2베트남 3캐나다 4이탈리아 5일본 6프랑스 7영국 8미국 9독일\n");
 			scanf("%d", &namecode);
+			loc = &cold[namecode];
 			rewrite(namecode, loc);
 
 		}
@@ -92,6 +96,7 @@ int main() {
 					break;
 				}
 			}
+			scanf("%c%c", &trash111, &trash111);
 
 		}
 		else {
